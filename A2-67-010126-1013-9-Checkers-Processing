@@ -117,3 +117,19 @@ void displayGameOver() {
     textSize(20);
     text("Click to Restart", width / 2 - 80, height / 2 + 40);
 }
+void checkGameOver() {
+  int whiteCount = 0, redCount = 0;
+
+  for (int row = 0; row < 8; row++) {
+    for (int col = 0; col < 8; col++) {
+      if (board[row][col] == playerWhite) {
+        whiteCount++;
+      } else if (board[row][col] == playerRed) {
+        redCount++;
+      }
+    }
+  }
+  if (whiteCount == 0 || redCount == 0) {
+    gameEnded = true;
+  }
+}
