@@ -175,3 +175,39 @@ boolean anyCaptureAvailable() {
   }
   return false;
 }
+void mousePressed() {
+  if (gameEnded) return;
+
+  int clickedRow = mouseY / tileSize;
+  int clickedCol = mouseX / tileSize;
+
+  boolean captureAvailable = anyCaptureAvailable();
+
+  if (pieceSelected) {
+    if (isCaptureMove(selectedRow, selectedCol, clickedRow, clickedCol)) {
+      capturePiece(selectedRow, selectedCol, clickedRow, clickedCol);
+      checkGameOver();
+      currentPlayer *= -1;
+    } else if (canCapture(selectedRow, selectedCol)) {
+      pieceSelected = false;
+      return;
+    } else if (!captureAvailable && isValidMove(selectedRow, selectedCol, clickedRow, clickedCol)) {
+      movePiece(selectedRow, selectedCol, clickedRow, clickedCol);
+      checkGameOver();
+      currentPlayer *= -1;
+    }
+    pieceSelected = false;
+  } else {
+    if (captureAvailable) {
+      if ((board[clickedRow][clickedCol] == currentPlayer || abs(board[clickedRow][clickedCol]) == 2) && canCapture(clickedRow, clickedCol)) {
+        pieceSelected = true;
+        selectedRow = clickedRow;
+        selectedCol = clickedCol;
+      }
+    } else if (board[clickedRow][clickedCol] == currentPlayer || (abs(board[clickedRow][clickedCol]) == 2 && board[clickedRow][clickedCol] * currentPlayer > 0)) {
+      pieceSelected = true;
+      selectedRow = clickedRow;
+      selectedCol = clickedCol;
+    }
+  }
+}
