@@ -103,3 +103,9 @@ void drawPieces() {
     }
   }
 }
+void displayCurrentPlayer() {
+  fill(0, 255, 0);
+  textSize(32);
+  String playerText = (currentPlayer == playerWhite) ? "Turn: White" : "Turn: Red";
+  text(playerText, 20, height - 20);
+}
