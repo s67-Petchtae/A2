@@ -237,3 +237,17 @@ boolean isValidMove(int fromRow, int fromCol, int toRow, int toCol) {
 
   return false;
 }
+boolean isCaptureMove(int fromRow, int fromCol, int toRow, int toCol) {
+  if (board[toRow][toCol] != 0) {
+    return false;
+  }
+  
+  int midRow = (fromRow + toRow) / 2;
+  int midCol = (fromCol + toCol) / 2;
+
+  if (abs(fromRow - toRow) == 2 && abs(fromCol - toCol) == 2 && board[midRow][midCol] == -currentPlayer) {
+    return true;
+  }
+  
+  return false;
+}
