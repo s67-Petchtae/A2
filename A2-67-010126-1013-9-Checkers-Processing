@@ -58,3 +58,23 @@ void initializeBoard() {
     }
   }
 }
+void drawBoard() {
+  for (int row = 0; row < 8; row++) {
+    for (int col = 0; col < 8; col++) {
+      if ((row + col) % 2 == 0) {
+        fill(255);
+      } else {
+        if (pieceSelected && isValidMove(selectedRow, selectedCol, row, col)) {
+          fill(0);
+        } else if (pieceSelected && isCaptureMove(selectedRow, selectedCol, row, col)) {
+          fill(0, 255, 0);
+        } else if (canCapture(row, col) && board[row][col] == currentPlayer) {
+          fill(0, 0, 255);
+        } else {
+          fill(0);
+        }
+      }
+      rect(col * tileSize, row * tileSize, tileSize, tileSize);
+    }
+  }
+}
