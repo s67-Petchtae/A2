@@ -272,3 +272,28 @@ void movePiece(int fromRow, int fromCol, int toRow, int toCol) {
 
     promotePiece(toRow, toCol); 
 }
+void capturePiece(int fromRow, int fromCol, int toRow, int toCol) {
+    int dRow = (toRow - fromRow) > 0 ? 1 : -1;
+    int dCol = (toCol - fromCol) > 0 ? 1 : -1;
+
+    if (abs(board[fromRow][fromCol]) == 2) { 
+        int row = fromRow + dRow;
+        int col = fromCol + dCol;
+        while (row != toRow && col != toCol) { 
+            if (board[row][col] == -currentPlayer) {
+                board[row][col] = 0;
+            }
+            row += dRow;
+            col += dCol;
+        }
+    } else { 
+        int middleRow = (fromRow + toRow) / 2;
+        int middleCol = (fromCol + toCol) / 2;
+        board[middleRow][middleCol] = 0; 
+    }
+
+    board[toRow][toCol] = board[fromRow][fromCol];
+    board[fromRow][fromCol] = 0;
+
+    promotePiece(toRow, toCol);
+}
