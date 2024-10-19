@@ -11,3 +11,14 @@ void setup() {
   size(640, 640);
   initializeBoard();
 }
+void draw() {
+  background(255);
+  drawBoard();
+  drawPieces();
+  displayCurrentPlayer();
+  drawValidMoves();
+
+  if (gameEnded) {
+    displayGameOver();
+  }
+}
