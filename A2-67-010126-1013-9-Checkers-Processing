@@ -163,3 +163,15 @@ boolean canCapture(int row, int col) {
   }
   return false;
 }
+boolean anyCaptureAvailable() {
+  for (int row = 0; row < 8; row++) {
+    for (int col = 0; col < 8; col++) {
+      if (board[row][col] == currentPlayer || abs(board[row][col]) == 2) {
+        if (canCapture(row, col)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
