@@ -109,3 +109,11 @@ void displayCurrentPlayer() {
   String playerText = (currentPlayer == playerWhite) ? "Turn: White" : "Turn: Red";
   text(playerText, 20, height - 20);
 }
+void displayGameOver() {
+    fill(255, 0, 0);
+    textSize(32);
+    text("Game Over", width / 2 - 80, height / 2);
+    fill(0);
+    textSize(20);
+    text("Click to Restart", width / 2 - 80, height / 2 + 40);
+}
