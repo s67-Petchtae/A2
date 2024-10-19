@@ -78,3 +78,28 @@ void drawBoard() {
     }
   }
 }
+void drawPieces() {
+  for (int row = 0; row < 8; row++) {
+    for (int col = 0; col < 8; col++) {
+      if (board[row][col] == playerWhite || board[row][col] == 2) {
+        fill(255);
+        ellipse(col * tileSize + tileSize / 2, row * tileSize + tileSize / 2, tileSize - 10, tileSize - 10);
+        if (board[row][col] == 2) {
+          fill(255, 215, 0);
+          textSize(30);
+          textAlign(CENTER, CENTER);
+          text("King", col * tileSize + tileSize / 2, row * tileSize + tileSize / 2);
+        }
+      } else if (board[row][col] == playerRed || board[row][col] == -2) {
+        fill(255, 0, 0);
+        ellipse(col * tileSize + tileSize / 2, row * tileSize + tileSize / 2, tileSize - 10, tileSize - 10);
+        if (board[row][col] == -2) {
+          fill(255, 215, 0);
+          textSize(30);
+          textAlign(CENTER, CENTER);
+          text("King", col * tileSize + tileSize / 2, row * tileSize + tileSize / 2);
+        }
+      }
+    }
+  }
+}
