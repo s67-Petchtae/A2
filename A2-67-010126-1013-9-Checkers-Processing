@@ -133,3 +133,33 @@ void checkGameOver() {
     gameEnded = true;
   }
 }
+boolean canCapture(int row, int col) {
+  for (int dRow = -2; dRow <= 2; dRow += 4) {
+    for (int dCol = -2; dCol <= 2; dCol += 4) {
+      int toRow = row + dRow;
+      int toCol = col + dCol;
+      if (toRow >= 0 && toRow < 8 && toCol >= 0 && toCol < 8) {
+        if (isCaptureMove(row, col, toRow, toCol)) {
+          return true;
+        }
+      }
+    }
+  }
+  
+  if (abs(board[row][col]) == 2) {
+    for (int dRow = -2; dRow <= 2; dRow += 4) {
+      for (int dCol = -2; dCol <= 2; dCol += 4) {
+        for (int dist = 2; dist < 8; dist++) {
+          int toRow = row + dist * (dRow / 2);
+          int toCol = col + dist * (dCol / 2);
+          if (toRow >= 0 && toRow < 8 && toCol >= 0 && toCol < 8) {
+            if (isCaptureMove(row, col, toRow, toCol)) {
+              return true;
+            }
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
