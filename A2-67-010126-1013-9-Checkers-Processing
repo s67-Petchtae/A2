@@ -297,3 +297,10 @@ void capturePiece(int fromRow, int fromCol, int toRow, int toCol) {
 
     promotePiece(toRow, toCol);
 }
+void promotePiece(int row, int col) {
+  if (currentPlayer == playerWhite && row == 7) {
+    board[row][col] = 2; 
+  } else if (currentPlayer == playerRed && row == 0) {
+    board[row][col] = -2;
+  }
+}
