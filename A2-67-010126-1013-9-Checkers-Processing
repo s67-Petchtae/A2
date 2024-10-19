@@ -22,3 +22,28 @@ void draw() {
     displayGameOver();
   }
 }
+void drawValidMoves() {
+    if (pieceSelected) {
+        boolean captureAvailable = anyCaptureAvailable();
+
+        if (captureAvailable) {
+            for (int toRow = 0; toRow < 8; toRow++) {
+                for (int toCol = 0; toCol < 8; toCol++) {
+                    if (isCaptureMove(selectedRow, selectedCol, toRow, toCol)) {
+                        fill(0, 255, 0);
+                        rect(toCol * tileSize, toRow * tileSize, tileSize, tileSize);
+                    }
+                }
+            }
+        } else {
+            for (int toRow = 0; toRow < 8; toRow++) {
+                for (int toCol = 0; toCol < 8; toCol++) {
+                    if (isValidMove(selectedRow, selectedCol, toRow, toCol)) {
+                        fill(0, 255, 0);
+                        rect(toCol * tileSize, toRow * tileSize, tileSize, tileSize);
+                    }
+                }
+            }
+        }
+    }
+}
